@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="tr" data-lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>PNN Health Travel Agency</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="PNN Health Travel Agency - Uluslararası sağlık turizmi ve tedavi organizasyonu.">
+  <style>
+    :root {
+      --primary: #0b6b75;
+      --primary-dark: #074750;
+      --accent: #f7931d;
+      --bg: #f5f9fc;
+      --text: #1d2933;
+      --muted: #708090;
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .page { max-width: 1200px; margin: 0 auto; padding: 0 18px 48px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(245, 249, 252, 0.98);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 10px;
+    }
+    .nav-left { display: flex; align-items: center; gap: 14px; }
+    .nav-logo { height: 44px; width: auto; }
+    .nav-title {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .nav-menu a { padding: 6px 0; color: var(--muted); }
+    .nav-menu a:hover { color: var(--primary); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      border-radius: 999px;
+      border: 1px solid rgba(11, 107, 117, 0.25);
+      overflow: hidden;
+      font-size: 12px;
+    }
+    .lang-btn {
+      padding: 6px 10px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .lang-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .nav-cta {
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 6px 16px rgba(11, 107, 117, 0.25);
+      border: none;
+      cursor: pointer;
+    }
+    .nav-cta:hover { background: var(--primary-dark); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 32px;
+      padding: 42px 18px 32px;
+      align-items: center;
+    }
+    .hero-left { padding-right: 10px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px 4px 4px;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 18px;
+    }
+    .badge-dot {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #ffffff, var(--primary));
+      display: inline-flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 16px;
+    }
+    .badge-text {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+    .hero-title {
+      font-size: clamp(30px, 4vw, 40px);
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+    .hero-title span { color: var(--accent); }
+    .hero-subtitle {
+      font-size: 15px; color: var(--muted);
+      max-width: 520px; margin-bottom: 22px;
+    }
+    .hero-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .hero-chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(11, 107, 117, 0.05);
+      border: 1px solid rgba(11, 107, 117, 0.18);
+      font-size: 13px;
+      color: var(--primary-dark);
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+    .btn-primary {
+      padding: 11px 22px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 22px rgba(11, 107, 117, 0.25);
+    }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-outline {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(11, 107, 117, 0.35);
+      background: transparent;
+      color: var(--primary-dark);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .hero-phones { font-size: 13px; color: var(--muted); }
+    .hero-phones strong { color: var(--primary-dark); font-size: 15px; }
+
+    .hero-right { position: relative; }
+    .hero-card {
+      background: radial-gradient(circle at top left, #ffffff, #e5f2f5);
+      border-radius: 32px;
+      box-shadow: var(--shadow-soft);
+      padding: 22px 22px 18px;
+      position: relative;
+      overflow: hidden;
+      min-height: 260px;
+    }
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(11, 107, 117, 0.23), transparent);
+      top: -40px; right: -70px; opacity: 0.7;
+    }
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+    .hero-card-title { font-size: 15px; font-weight: 600; color: var(--primary-dark); }
+    .hero-card-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(247, 147, 29, 0.1);
+      color: var(--accent);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+    }
+    .hero-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 13px;
+    }
+    .hero-mini {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 1px solid rgba(11, 107, 117, 0.08);
+      position: relative;
+      z-index: 1;
+    }
+    .hero-mini-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .hero-mini-value {
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+    .hero-badge-floating {
+      position: absolute;
+      bottom: 16px; right: 20px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 11px;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      box-shadow: 0 10px 22px rgba(11, 107, 117, 0.35);
+      z-index: 1;
+    }
+    .hero-badge-floating span { font-size: 16px; }
+
+    section { padding: 32px 18px 12px; }
+    .section-header { text-align: center; margin-bottom: 26px; }
+    .section-kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .section-title { font-size: 24px; color: var(--primary-dark); margin-bottom: 6px; }
+    .section-subtitle {
+      font-size: 14px; color: var(--muted);
+      max-width: 620px; margin: 0 auto;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 26px;
+      align-items: start;
+      margin-top: 10px;
+    }
+    .about-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 20px 18px;
+      font-size: 14px;
+    }
+    .about-card p + p { margin-top: 10px; }
+    .about-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      font-size: 13px;
+      margin-top: 14px;
+    }
+    .meta-item {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(11, 107, 117, 0.03);
+      border: 1px solid rgba(11, 107, 117, 0.08);
+    }
+    .meta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+    .meta-value { font-weight: 600; color: var(--primary-dark); }
+
+    .services-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 3.5fr);
+      gap: 22px;
+      margin-top: 8px;
+    }
+    .service-tags {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+    .service-pill {
+      padding: 9px 11px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid rgba(11, 107, 117, 0.09);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03);
+      min-height: 34px;
+    }
+    .service-pill-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(11, 107, 117, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--primary-dark);
+      flex-shrink: 0;
+    }
+    .service-feature-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 16px 16px 14px;
+      font-size: 13px;
+    }
+    .service-feature-card h3 {
+      font-size: 15px;
+      margin-bottom: 4px;
+      color: var(--primary-dark);
+    }
+    .service-feature-card ul { margin: 6px 0 0 18px; }
+    .service-feature-card li { margin-bottom: 4px; }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .step-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 16px 16px 12px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      font-size: 13px;
+    }
+    .step-number {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 3px;
+      color: var(--primary-dark);
+    }
+
+    .certificate-strip {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 13px;
+    }
+    .certificate-pill {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(11, 107, 117, 0.04);
+      border: 1px dashed rgba(11, 107, 117, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary-dark);
+    }
+    .certificate-pill span { font-size: 16px; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 26px;
+      margin-top: 10px;
+    }
+    .contact-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 16px;
+      font-size: 14px;
+    }
+    .contact-list { list-style: none; margin-top: 6px; }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .contact-icon {
+      width: 26px; height: 26px;
+      border-radius: 999px;
+      background: rgba(11, 107, 117, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--primary-dark);
+      flex-shrink: 0;
+    }
+    .contact-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+    .contact-value { font-weight: 600; color: var(--primary-dark); }
+    .contact-note { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+    .form-group { margin-bottom: 10px; font-size: 13px; }
+    .form-group label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 500;
+      font-size: 13px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(11, 107, 117, 0.2);
+    }
+    .form-inline {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 8px;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    .small-text { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+    footer {
+      padding: 20px 18px 10px;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+    footer a { color: var(--primary-dark); font-weight: 500; }
+
+    @media (max-width: 900px) {
+      .hero, .about-grid, .services-layout, .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero { padding-top: 28px; }
+      .hero-left { order: 1; padding-right: 0; }
+      .hero-right { order: 2; }
+
+      .nav-menu { display: none; }
+      .nav { padding-inline: 14px; }
+    }
+    @media (max-width: 600px) {
+      .page { padding-inline: 12px; }
+      section { padding-inline: 12px; }
+      .hero, .nav { padding-inline: 12px; }
+      .section-title { font-size: 21px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <img src="images/pnn-logo.png" alt="PNN Health logo" class="nav-logo">
+        <div class="nav-title" data-i18n="nav_subtitle">Health Travel Agency</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#about" data-i18n="nav_about">Hakkımızda</a>
+        <a href="#services" data-i18n="nav_services">Tedaviler</a>
+        <a href="#process" data-i18n="nav_process">Süreç</a>
+        <a href="#contact" data-i18n="nav_contact">İletişim</a>
+      </nav>
+
+      <div class="nav-right">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang-btn="tr">TR</button>
+          <button class="lang-btn" data-lang-btn="en">EN</button>
+        </div>
+        <a href="#contact">
+          <button class="nav-cta" data-i18n="nav_cta">Ücretsiz danışma</button>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-left">
+        <div class="badge">
+          <div class="badge-dot">✓</div>
+          <div class="badge-text" data-i18n="hero_badge">
+            Uluslararası Sağlık Turizmi Yetki Belgesi
+          </div>
+        </div>
+        <h1 class="hero-title" data-i18n="hero_title">
+          Türkiye’de güvenilir <span>sağlık turizmi</span> çözüm ortağınız
+        </h1>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">
+          PNN Health &amp; Travel, 30 yılı aşkın sağlık tecrübesine sahip doktorlar ve yöneticiler tarafından kurulmuş bir
+          sağlık turizmi acentesidir. Tedavi sürecinizin her aşamasında yanınızdayız.
+        </p>
+
+        <div class="hero-highlights">
+          <div class="hero-chip" data-i18n="hero_chip1">Saç ekimi &amp; estetik cerrahi</div>
+          <div class="hero-chip" data-i18n="hero_chip2">Diş tedavileri &amp; implant</div>
+          <div class="hero-chip" data-i18n="hero_chip3">Check-up, onkoloji &amp; rehabilitasyon</div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#contact"><button class="btn-primary" data-i18n="hero_btn_primary">Tedavi planı iste</button></a>
+          <a href="#services"><button class="btn-outline" data-i18n="hero_btn_outline">Tedavileri incele</button></a>
+        </div>
+        <div class="hero-phones" data-i18n="hero_phones">
+          7/24 WhatsApp ve telefon hattı:<br>
+          <strong>+90 312 552 21 11</strong>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="hero-card-header">
+            <div class="hero-card-title" data-i18n="hero_card_title">
+              Neden PNN Health?
+            </div>
+            <div class="hero-card-pill" data-i18n="hero_card_pill">
+              30+ yıllık deneyim
+            </div>
+          </div>
+          <div class="hero-card-grid">
+            <div class="hero-mini">
+              <div class="hero-mini-label" data-i18n="hero_mini1_label">Tıbbi ekip</div>
+              <div class="hero-mini-value" data-i18n="hero_mini1_value">Deneyimli doktorlar ve uzmanlar</div>
+            </div>
+            <div class="hero-mini">
+              <div class="hero-mini-label" data-i18n="hero_mini2_label">Hastaneler</div>
+              <div class="hero-mini-value" data-i18n="hero_mini2_value">Akredite, modern sağlık tesisleri</div>
+            </div>
+            <div class="hero-mini">
+              <div class="hero-mini-label" data-i18n="hero_mini3_label">Diller</div>
+              <div class="hero-mini-value" data-i18n="hero_mini3_value">Türkçe, İngilizce, Almanca, Rusça, Arapça</div>
+            </div>
+            <div class="hero-mini">
+              <div class="hero-mini-label" data-i18n="hero_mini4_label">Destek</div>
+              <div class="hero-mini-value" data-i18n="hero_mini4_value">Sürekli iletişim ve tercüman desteği</div>
+            </div>
+          </div>
+
+          <div class="hero-badge-floating" data-i18n="hero_badge_floating">
+            <span>★</span>
+            Çözüm PNN Health. PNN Health her zaman yanınızda.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-header">
+        <div class="section-kicker" data-i18n="about_kicker">Hakkımızda</div>
+        <h2 class="section-title" data-i18n="about_title">PNN Health &amp; Travel Agency</h2>
+        <p class="section-subtitle" data-i18n="about_subtitle">
+          Tıbbi uzmanlık ile turizm deneyimini birleştiren, hasta haklarını önceleyen profesyonel sağlık turizmi acentesi.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <p data-i18n="about_p1">
+            PNN HEALTH &amp; TRAVEL, tıp ve sağlık yönetimi alanında 30 yılı aşkın deneyime sahip doktorlar ve yöneticiler
+            tarafından kurulmuştur. Amacımız; yurtdışından gelen hastalar için güvenli, şeffaf ve konforlu bir tedavi
+            süreci organize etmektir.
+          </p>
+          <p data-i18n="about_p2">
+            İlk tıbbi değerlendirmeden, hastane ve hekim seçimine, konaklama ve transfer organizasyonuna kadar tüm
+            detayları planlar; hasta adına süreçleri takip ederiz.
+          </p>
+          <p data-i18n="about_p3">
+            Siz sağlığınıza odaklanırken; randevular, transferler, tercüme ve evrak işleri gibi tüm organizasyonu
+            ekibimiz üstlenir.
+          </p>
+
+          <div class="about-meta">
+            <div class="meta-item">
+              <div class="meta-label" data-i18n="about_meta1_label">Deneyim</div>
+              <div class="meta-value" data-i18n="about_meta1_value">30+ yıllık sağlık tecrübesi</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label" data-i18n="about_meta2_label">Lokasyon</div>
+              <div class="meta-value" data-i18n="about_meta2_value">Ankara · Türkiye</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label" data-i18n="about_meta3_label">Diller</div>
+              <div class="meta-value" data-i18n="about_meta3_value">TR · EN · DE · RU · AR</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label" data-i18n="about_meta4_label">Yetki</div>
+              <div class="meta-value" data-i18n="about_meta4_value">Uluslararası Sağlık Turizmi Yetki Belgesi</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-card">
+          <h3 style="font-size:15px; margin-bottom:8px; color:var(--primary-dark);" data-i18n="about_right_title">
+            Sizin için neleri organize ediyoruz?
+          </h3>
+          <ul style="margin-left:18px;">
+            <li data-i18n="about_li1">Tıbbi raporlarınızla ücretsiz ön değerlendirme</li>
+            <li data-i18n="about_li2">Size özel tedavi planı ve maliyet çalışması</li>
+            <li data-i18n="about_li3">Uygun hastane ve uzman hekim seçimi</li>
+            <li data-i18n="about_li4">Havalimanı–otel–hastane transferleri ve konaklama</li>
+            <li data-i18n="about_li5">Tercümanlık ve refakat desteği</li>
+            <li data-i18n="about_li6">Tedavi sonrası takip ve kontrol organizasyonu</li>
+          </ul>
+          <p style="margin-top:10px; font-size:13px; color:var(--muted);" data-i18n="about_right_note">
+            Kısacası; tedavi sürecinizin başından sonuna kadar profesyonel bir çözüm ortağı olarak yanınızdayız.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="section-header">
+        <div class="section-kicker" data-i18n="services_kicker">Tedaviler</div>
+        <h2 class="section-title" data-i18n="services_title">Organize ettiğimiz tıbbi alanlar</h2>
+        <p class="section-subtitle" data-i18n="services_subtitle">
+          Estetik uygulamalardan kompleks cerrahi işlemlere kadar geniş bir yelpazede, Türkiye’nin önde gelen
+          hastanelerinde tedavi imkânı sunuyoruz.
+        </p>
+      </div>
+
+      <div class="services-layout">
+        <div class="service-tags">
+          <div class="service-pill"><span class="service-pill-icon">💇</span><span data-i18n="svc1">Saç ekimi</span></div>
+          <div class="service-pill"><span class="service-pill-icon">✨</span><span data-i18n="svc2">Plastik &amp; estetik cerrahi</span></div>
+          <div class="service-pill"><span class="service-pill-icon">💉</span><span data-i18n="svc3">Mezoterapi &amp; medikal estetik</span></div>
+          <div class="service-pill"><span class="service-pill-icon">😁</span><span data-i18n="svc4">Diş tedavileri &amp; implant</span></div>
+          <div class="service-pill"><span class="service-pill-icon">🩺</span><span data-i18n="svc5">Dahiliye &amp; check-up programları</span></div>
+          <div class="service-pill"><span class="service-pill-icon">❤️</span><span data-i18n="svc6">Kardiyoloji &amp; anjiyo</span></div>
+          <div class="service-pill"><span class="service-pill-icon">🫁</span><span data-i18n="svc7">Onkoloji &amp; kanser tedavileri</span></div>
+          <div class="service-pill"><span class="service-pill-icon">🦴</span><span data-i18n="svc8">Ortopedi &amp; protez cerrahisi</span></div>
+          <div class="service-pill"><span class="service-pill-icon">👁️</span><span data-i18n="svc9">Göz hastalıkları ve cerrahisi</span></div>
+          <div class="service-pill"><span class="service-pill-icon">👶</span><span data-i18n="svc10">İnfertilite &amp; tüp bebek</span></div>
+          <div class="service-pill"><span class="service-pill-icon">🧠</span><span data-i18n="svc11">Nöroloji &amp; girişimsel nöroradyoloji</span></div>
+          <div class="service-pill"><span class="service-pill-icon">🧬</span><span data-i18n="svc12">Organ nakli</span></div>
+          <div class="service-pill"><span class="service-pill-icon">🧓</span><span data-i18n="svc13">Yaşlı bakım hizmetleri</span></div>
+          <div class="service-pill"><span class="service-pill-icon">🚫</span><span data-i18n="svc14">Bağımlılık tedavileri</span></div>
+          <div class="service-pill"><span class="service-pill-icon">🏃</span><span data-i18n="svc15">Fizik tedavi &amp; rehabilitasyon</span></div>
+          <div class="service-pill"><span class="service-pill-icon">🌡️</span><span data-i18n="svc16">Alerji &amp; immünoloji</span></div>
+          <div class="service-pill"><span class="service-pill-icon">🩻</span><span data-i18n="svc17">Check-up &amp; görüntüleme</span></div>
+          <div class="service-pill"><span class="service-pill-icon">🩺</span><span data-i18n="svc18">Gastroenteroloji &amp; obezite cerrahisi</span></div>
+        </div>
+
+        <div class="service-feature-card">
+          <h3 data-i18n="services_right_title">Önceliğimiz kalite ve güvenlik</h3>
+          <p data-i18n="services_right_p1">
+            Her hastayı tıbbi geçmişine göre ayrı ayrı değerlendiriyor, en uygun hastane ve uzman hekimi seçerek süreci
+            baştan sona takip ediyoruz.
+          </p>
+          <ul>
+            <li data-i18n="services_right_li1">Tıbbi raporlara dayalı, kanıta dayalı tedavi seçenekleri</li>
+            <li data-i18n="services_right_li2">Türkiye’ye gelmeden önce net ve şeffaf maliyet bilgisi</li>
+            <li data-i18n="services_right_li3">Konforlu konaklama ve transfer çözümleri</li>
+            <li data-i18n="services_right_li4">Tedavi öncesi ve sonrası sürekli iletişim</li>
+          </ul>
+          <p style="margin-top:8px;" data-i18n="services_right_p2">
+            Tıbbi raporlarınızı bizimle paylaşarak size özel bir tedavi ve seyahat planı talep edebilirsiniz.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process">
+      <div class="section-header">
+        <div class="section-kicker" data-i18n="process_kicker">Süreç</div>
+        <h2 class="section-title" data-i18n="process_title">PNN Health ile tedavi yolculuğunuz</h2>
+        <p class="section-subtitle" data-i18n="process_subtitle">
+          İlk mesajınızdan eve dönüşünüze kadar, uluslararası tedavi sürecini sizin için basit, güvenli ve planlı hale
+          getiriyoruz.
+        </p>
+      </div>
+
+      <div class="process-steps">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-title" data-i18n="step1_title">İletişim ve tıbbi bilgiler</div>
+          <p data-i18n="step1_p">
+            Şikâyetlerinizi ve mevcut raporlarınızı e-posta veya WhatsApp üzerinden bizimle paylaşırsınız.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-title" data-i18n="step2_title">Uzman değerlendirmesi</div>
+          <p data-i18n="step2_p">
+            Doktorlarımız dosyanızı inceler ve size uygun tedavi planı, hastane ve maliyet çalışmasını hazırlar.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-title" data-i18n="step3_title">Seyahat ve randevu organizasyonu</div>
+          <p data-i18n="step3_p">
+            Uçuş tarihlerinizle uyumlu olacak şekilde randevular, konaklama ve transfer planlaması yapılır.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-title" data-i18n="step4_title">Tedavi ve takip süreci</div>
+          <p data-i18n="step4_p">
+            Türkiye’de bulunduğunuz süre boyunca ekibimiz yanınızdadır. Eve dönüş sonrası da kontrollere yönelik
+            iletişimimiz devam eder.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section id="certificates">
+      <div class="section-header">
+        <div class="section-kicker" data-i18n="cert_kicker">Yetki Belgeleri</div>
+        <h2 class="section-title" data-i18n="cert_title">Resmi olarak yetkilendirilmiş sağlık turizmi acentesi</h2>
+        <p class="section-subtitle" data-i18n="cert_subtitle">
+          PNN Health Travel Agency, T.C. Sağlık Bakanlığı tarafından verilen Uluslararası Sağlık Turizmi Yetki Belgesi’ne
+          ve T.C. Kültür ve Turizm Bakanlığı’ndan A grubu seyahat acentesi belgesine sahiptir.
+        </p>
+      </div>
+
+      <div class="certificate-strip">
+        <div class="certificate-pill">
+          <span>🏅</span>
+          <span data-i18n="cert1">T.C. Sağlık Bakanlığı Uluslararası Sağlık Turizmi Yetki Belgesi</span>
+        </div>
+        <div class="certificate-pill">
+          <span>🏨</span>
+          <span data-i18n="cert2">T.C. Kültür ve Turizm Bakanlığı A Grubu Seyahat Acentesi</span>
+        </div>
+        <div class="certificate-pill">
+          <span>🩻</span>
+          <span data-i18n="cert3">Akredite hastaneler ve kliniklerle iş birliği</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-header">
+        <div class="section-kicker" data-i18n="contact_kicker">İletişim</div>
+        <h2 class="section-title" data-i18n="contact_title">Ücretsiz tıbbi değerlendirme alın</h2>
+        <p class="section-subtitle" data-i18n="contact_subtitle">
+          Sağlık ihtiyaçlarınızı bizimle paylaşın. Ekibimiz, size en kısa sürede kişiselleştirilmiş tedavi ve seyahat
+          planı ile geri dönüş yapsın.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3 style="font-size:15px; margin-bottom:4px; color:var(--primary-dark);" data-i18n="contact_left_title">
+            PNN Health’e ulaşın
+          </h3>
+          <ul class="contact-list">
+            <li class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div>
+                <div class="contact-label" data-i18n="contact_phone_label">Telefon / WhatsApp</div>
+                <div class="contact-value">
+                  <a href="tel:+903125522111">+90 312 552 21 11</a>
+                </div>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <div class="contact-label" data-i18n="contact_address_label">Adres</div>
+                <div class="contact-value" data-i18n="contact_address_value">
+                  Ehlibeyt Mah. Tekstilkiler Cad., Libra Kule 21 No: 21/29<br>
+                  Balgat, Çankaya · Ankara · Türkiye
+                </div>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon">✉️</div>
+              <div>
+                <div class="contact-label">E-mail</div>
+                <div class="contact-value">
+                  <a href="mailto:info@pnnhealth.com.tr">info@pnnhealth.com.tr</a>
+                </div>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon">🌐</div>
+              <div>
+                <div class="contact-label" data-i18n="contact_web_label">Web</div>
+                <div class="contact-value">
+                  <a href="https://www.pnnhealth.com.tr" target="_blank" rel="noopener">www.pnnhealth.com.tr</a>
+                </div>
+              </div>
+            </li>
+            <li class="contact-item">
+              <div class="contact-icon">📱</div>
+              <div>
+                <div class="contact-label">Instagram</div>
+                <div class="contact-value">
+                  <a href="https://www.instagram.com/pnnhealthtravelagency" target="_blank" rel="noopener">
+                    @pnnhealthtravelagency
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <p class="contact-note" data-i18n="contact_note">
+            Tıbbi raporlarınızı e-posta veya WhatsApp üzerinden iletebilirsiniz. Ekibimiz inceleyerek size en uygun
+            tedavi seçenekleriyle dönüş yapacaktır.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <h3 style="font-size:15px; margin-bottom:6px; color:var(--primary-dark);" data-i18n="form_title">
+            Hızlı iletişim formu
+          </h3>
+          <form>
+            <div class="form-group">
+              <label for="name" data-i18n="form_name_label">Ad Soyad</label>
+              <input id="name" type="text" data-i18n-placeholder="form_name_ph" placeholder="Adınız Soyadınız">
+            </div>
+            <div class="form-group form-inline">
+              <div>
+                <label for="email" data-i18n="form_email_label">E-posta</label>
+                <input id="email" type="email" data-i18n-placeholder="form_email_ph" placeholder="ornek@eposta.com">
+              </div>
+              <div>
+                <label for="phone" data-i18n="form_phone_label">Telefon / WhatsApp</label>
+                <input id="phone" type="tel" data-i18n-placeholder="form_phone_ph" placeholder="+90 ...">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="treatment" data-i18n="form_treatment_label">İlgilendiğiniz tedavi</label>
+              <select id="treatment">
+                <option data-i18n="form_opt1">Saç ekimi</option>
+                <option data-i18n="form_opt2">Estetik / plastik cerrahi</option>
+                <option data-i18n="form_opt3">Diş tedavileri</option>
+                <option data-i18n="form_opt4">Check-up</option>
+                <option data-i18n="form_opt5">Onkoloji / kanser tedavisi</option>
+                <option data-i18n="form_opt6">Kardiyoloji</option>
+                <option data-i18n="form_opt7">Organ nakli</option>
+                <option data-i18n="form_opt8">İnfertilite / tüp bebek</option>
+                <option data-i18n="form_opt9">Diğer</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message" data-i18n="form_message_label">Mesajınız / tıbbi geçmişiniz</label>
+              <textarea id="message" data-i18n-placeholder="form_message_ph" placeholder="Şikâyetleriniz, tanılarınız ve beklentileriniz hakkında kısa bilgi."></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%; margin-top:4px;" data-i18n="form_btn">
+              Talebinizi gönderin (demo)
+            </button>
+            <div class="small-text" data-i18n="form_small">
+              Bu form örnek amaçlıdır. Geliştiriciniz formu istediğiniz e-posta adresine veya CRM sistemine
+              yönlendirebilir.
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div data-i18n="footer_slogan">Çözüm PNN HEALTH. PNN HEALTH her zaman yanınızda.</div>
+    <div style="margin-top:5px;">
+      &copy; <span id="year"></span> PNN Health Travel Agency · <span data-i18n="footer_rights">Tüm hakları saklıdır.</span>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      tr: {
+        nav_subtitle: "Health Travel Agency",
+        nav_about: "Hakkımızda",
+        nav_services: "Tedaviler",
+        nav_process: "Süreç",
+        nav_contact: "İletişim",
+        nav_cta: "Ücretsiz danışma",
+
+        hero_badge: "Uluslararası Sağlık Turizmi Yetki Belgesi",
+        hero_title: "Türkiye’de güvenilir <span>sağlık turizmi</span> çözüm ortağınız",
+        hero_subtitle: "PNN Health &amp; Travel, 30 yılı aşkın sağlık tecrübesine sahip doktorlar ve yöneticiler tarafından kurulmuş bir sağlık turizmi acentesidir. Tedavi sürecinizin her aşamasında yanınızdayız.",
+        hero_chip1: "Saç ekimi &amp; estetik cerrahi",
+        hero_chip2: "Diş tedavileri &amp; implant",
+        hero_chip3: "Check-up, onkoloji &amp; rehabilitasyon",
+        hero_btn_primary: "Tedavi planı iste",
+        hero_btn_outline: "Tedavileri incele",
+        hero_phones: "7/24 WhatsApp ve telefon hattı:<br><strong>+90 312 552 21 11</strong>",
+        hero_card_title: "Neden PNN Health?",
+        hero_card_pill: "30+ yıllık deneyim",
+        hero_mini1_label: "Tıbbi ekip",
+        hero_mini1_value: "Deneyimli doktorlar ve uzmanlar",
+        hero_mini2_label: "Hastaneler",
+        hero_mini2_value: "Akredite, modern sağlık tesisleri",
+        hero_mini3_label: "Diller",
+        hero_mini3_value: "Türkçe, İngilizce, Almanca, Rusça, Arapça",
+        hero_mini4_label: "Destek",
+        hero_mini4_value: "Sürekli iletişim ve tercüman desteği",
+        hero_badge_floating: "<span>★</span>Çözüm PNN Health. PNN Health her zaman yanınızda.",
+
+        about_kicker: "Hakkımızda",
+        about_title: "PNN Health &amp; Travel Agency",
+        about_subtitle: "Tıbbi uzmanlık ile turizm deneyimini birleştiren, hasta haklarını önceleyen profesyonel sağlık turizmi acentesi.",
+        about_p1: "PNN HEALTH &amp; TRAVEL, tıp ve sağlık yönetimi alanında 30 yılı aşkın deneyime sahip doktorlar ve yöneticiler tarafından kurulmuştur. Amacımız; yurtdışından gelen hastalar için güvenli, şeffaf ve konforlu bir tedavi süreci organize etmektir.",
+        about_p2: "İlk tıbbi değerlendirmeden, hastane ve hekim seçimine, konaklama ve transfer organizasyonuna kadar tüm detayları planlar; hasta adına süreçleri takip ederiz.",
+        about_p3: "Siz sağlığınıza odaklanırken; randevular, transferler, tercüme ve evrak işleri gibi tüm organizasyonu ekibimiz üstlenir.",
+        about_meta1_label: "Deneyim",
+        about_meta1_value: "30+ yıllık sağlık tecrübesi",
+        about_meta2_label: "Lokasyon",
+        about_meta2_value: "Ankara · Türkiye",
+        about_meta3_label: "Diller",
+        about_meta3_value: "TR · EN · DE · RU · AR",
+        about_meta4_label: "Yetki",
+        about_meta4_value: "Uluslararası Sağlık Turizmi Yetki Belgesi",
+        about_right_title: "Sizin için neleri organize ediyoruz?",
+        about_li1: "Tıbbi raporlarınızla ücretsiz ön değerlendirme",
+        about_li2: "Size özel tedavi planı ve maliyet çalışması",
+        about_li3: "Uygun hastane ve uzman hekim seçimi",
+        about_li4: "Havalimanı–otel–hastane transferleri ve konaklama",
+        about_li5: "Tercümanlık ve refakat desteği",
+        about_li6: "Tedavi sonrası takip ve kontrol organizasyonu",
+        about_right_note: "Kısacası; tedavi sürecinizin başından sonuna kadar profesyonel bir çözüm ortağı olarak yanınızdayız.",
+
+        services_kicker: "Tedaviler",
+        services_title: "Organize ettiğimiz tıbbi alanlar",
+        services_subtitle: "Estetik uygulamalardan kompleks cerrahi işlemlere kadar geniş bir yelpazede, Türkiye’nin önde gelen hastanelerinde tedavi imkânı sunuyoruz.",
+        svc1: "Saç ekimi",
+        svc2: "Plastik &amp; estetik cerrahi",
+        svc3: "Mezoterapi &amp; medikal estetik",
+        svc4: "Diş tedavileri &amp; implant",
+        svc5: "Dahiliye &amp; check-up programları",
+        svc6: "Kardiyoloji &amp; anjiyo",
+        svc7: "Onkoloji &amp; kanser tedavileri",
+        svc8: "Ortopedi &amp; protez cerrahisi",
+        svc9: "Göz hastalıkları ve cerrahisi",
+        svc10: "İnfertilite &amp; tüp bebek",
+        svc11: "Nöroloji &amp; girişimsel nöroradyoloji",
+        svc12: "Organ nakli",
+        svc13: "Yaşlı bakım hizmetleri",
+        svc14: "Bağımlılık tedavileri",
+        svc15: "Fizik tedavi &amp; rehabilitasyon",
+        svc16: "Alerji &amp; immünoloji",
+        svc17: "Check-up &amp; görüntüleme",
+        svc18: "Gastroenteroloji &amp; obezite cerrahisi",
+        services_right_title: "Önceliğimiz kalite ve güvenlik",
+        services_right_p1: "Her hastayı tıbbi geçmişine göre ayrı ayrı değerlendiriyor, en uygun hastane ve uzman hekimi seçerek süreci baştan sona takip ediyoruz.",
+        services_right_li1: "Tıbbi raporlara dayalı, kanıta dayalı tedavi seçenekleri",
+        services_right_li2: "Türkiye’ye gelmeden önce net ve şeffaf maliyet bilgisi",
+        services_right_li3: "Konforlu konaklama ve transfer çözümleri",
+        services_right_li4: "Tedavi öncesi ve sonrası sürekli iletişim",
+        services_right_p2: "Tıbbi raporlarınızı bizimle paylaşarak size özel bir tedavi ve seyahat planı talep edebilirsiniz.",
+
+        process_kicker: "Süreç",
+        process_title: "PNN Health ile tedavi yolculuğunuz",
+        process_subtitle: "İlk mesajınızdan eve dönüşünüze kadar, uluslararası tedavi sürecini sizin için basit, güvenli ve planlı hale getiriyoruz.",
+        step1_title: "İletişim ve tıbbi bilgiler",
+        step1_p: "Şikâyetlerinizi ve mevcut raporlarınızı e-posta veya WhatsApp üzerinden bizimle paylaşırsınız.",
+        step2_title: "Uzman değerlendirmesi",
+        step2_p: "Doktorlarımız dosyanızı inceler ve size uygun tedavi planı, hastane ve maliyet çalışmasını hazırlar.",
+        step3_title: "Seyahat ve randevu organizasyonu",
+        step3_p: "Uçuş tarihlerinizle uyumlu olacak şekilde randevular, konaklama ve transfer planlaması yapılır.",
+        step4_title: "Tedavi ve takip süreci",
+        step4_p: "Türkiye’de bulunduğunuz süre boyunca ekibimiz yanınızdadır. Eve dönüş sonrası da kontrollere yönelik iletişimimiz devam eder.",
+
+        cert_kicker: "Yetki Belgeleri",
+        cert_title: "Resmi olarak yetkilendirilmiş sağlık turizmi acentesi",
+        cert_subtitle: "PNN Health Travel Agency, T.C. Sağlık Bakanlığı tarafından verilen Uluslararası Sağlık Turizmi Yetki Belgesi’ne ve T.C. Kültür ve Turizm Bakanlığı’ndan A grubu seyahat acentesi belgesine sahiptir.",
+        cert1: "T.C. Sağlık Bakanlığı Uluslararası Sağlık Turizmi Yetki Belgesi",
+        cert2: "T.C. Kültür ve Turizm Bakanlığı A Grubu Seyahat Acentesi",
+        cert3: "Akredite hastaneler ve kliniklerle iş birliği",
+
+        contact_kicker: "İletişim",
+        contact_title: "Ücretsiz tıbbi değerlendirme alın",
+        contact_subtitle: "Sağlık ihtiyaçlarınızı bizimle paylaşın. Ekibimiz, size en kısa sürede kişiselleştirilmiş tedavi ve seyahat planı ile geri dönüş yapsın.",
+        contact_left_title: "PNN Health’e ulaşın",
+        contact_phone_label: "Telefon / WhatsApp",
+        contact_address_label: "Adres",
+        contact_address_value: "Ehlibeyt Mah. Tekstilkiler Cad., Libra Kule 21 No: 21/29<br>Balgat, Çankaya · Ankara · Türkiye",
+        contact_web_label: "Web",
+        contact_note: "Tıbbi raporlarınızı e-posta veya WhatsApp üzerinden iletebilirsiniz. Ekibimiz inceleyerek size en uygun tedavi seçenekleriyle dönüş yapacaktır.",
+
+        form_title: "Hızlı iletişim formu",
+        form_name_label: "Ad Soyad",
+        form_name_ph: "Adınız Soyadınız",
+        form_email_label: "E-posta",
+        form_email_ph: "ornek@eposta.com",
+        form_phone_label: "Telefon / WhatsApp",
+        form_phone_ph: "+90 ...",
+        form_treatment_label: "İlgilendiğiniz tedavi",
+        form_opt1: "Saç ekimi",
+        form_opt2: "Estetik / plastik cerrahi",
+        form_opt3: "Diş tedavileri",
+        form_opt4: "Check-up",
+        form_opt5: "Onkoloji / kanser tedavisi",
+        form_opt6: "Kardiyoloji",
+        form_opt7: "Organ nakli",
+        form_opt8: "İnfertilite / tüp bebek",
+        form_opt9: "Diğer",
+        form_message_label: "Mesajınız / tıbbi geçmişiniz",
+        form_message_ph: "Şikâyetleriniz, tanılarınız ve beklentileriniz hakkında kısa bilgi.",
+        form_btn: "Talebinizi gönderin (demo)",
+        form_small: "Bu form örnek amaçlıdır. Geliştiriciniz formu istediğiniz e-posta adresine veya CRM sistemine yönlendirebilir.",
+
+        footer_slogan: "Çözüm PNN HEALTH. PNN HEALTH her zaman yanınızda.",
+        footer_rights: "Tüm hakları saklıdır."
+      },
+
+      en: {
+        nav_subtitle: "Health Travel Agency",
+        nav_about: "About",
+        nav_services: "Treatments",
+        nav_process: "How it works",
+        nav_contact: "Contact",
+        nav_cta: "Free consultation",
+
+        hero_badge: "International Health Tourism Authorization",
+        hero_title: "Your trusted partner for <span>health travel</span> in Turkey",
+        hero_subtitle: "PNN Health &amp; Travel is a health tourism agency founded by doctors and managers with more than 30 years of experience in healthcare. We are with you at every step of your medical journey.",
+        hero_chip1: "Hair transplant &amp; plastic surgery",
+        hero_chip2: "Dentistry &amp; implants",
+        hero_chip3: "Check-up, oncology &amp; rehabilitation",
+        hero_btn_primary: "Request a treatment plan",
+        hero_btn_outline: "Explore treatments",
+        hero_phones: "24/7 WhatsApp &amp; phone support:<br><strong>+90 312 552 21 11</strong>",
+        hero_card_title: "Why PNN Health?",
+        hero_card_pill: "30+ years of experience",
+        hero_mini1_label: "Medical team",
+        hero_mini1_value: "Experienced doctors and specialists",
+        hero_mini2_label: "Hospitals",
+        hero_mini2_value: "Accredited, modern facilities",
+        hero_mini3_label: "Languages",
+        hero_mini3_value: "Turkish, English, German, Russian, Arabic",
+        hero_mini4_label: "Support",
+        hero_mini4_value: "Continuous contact &amp; interpreter support",
+        hero_badge_floating: "<span>★</span>Solution is PNN Health. PNN Health is with you.",
+
+        about_kicker: "About us",
+        about_title: "PNN Health &amp; Travel Agency",
+        about_subtitle: "A professional health tourism agency that combines medical expertise with travel experience and protects patient rights.",
+        about_p1: "PNN HEALTH &amp; TRAVEL was founded by doctors and managers with more than 30 years of experience in medicine and healthcare management. Our aim is to organise a safe, transparent and comfortable treatment process for international patients.",
+        about_p2: "We plan every detail from the first medical evaluation to hospital and doctor selection, accommodation and transfer arrangements, and we follow the process on behalf of the patient.",
+        about_p3: "While you focus on your health, our team takes care of appointments, transfers, interpretation and documentation.",
+        about_meta1_label: "Experience",
+        about_meta1_value: "30+ years in healthcare",
+        about_meta2_label: "Location",
+        about_meta2_value: "Ankara · Turkey",
+        about_meta3_label: "Languages",
+        about_meta3_value: "TR · EN · DE · RU · AR",
+        about_meta4_label: "Authorization",
+        about_meta4_value: "International Health Tourism Certificate",
+        about_right_title: "What do we organise for you?",
+        about_li1: "Free preliminary evaluation with your medical reports",
+        about_li2: "Personalised treatment plan and cost calculation",
+        about_li3: "Selection of the most suitable hospital and specialist",
+        about_li4: "Airport–hotel–hospital transfers and accommodation",
+        about_li5: "Interpreter and companion support",
+        about_li6: "Post-treatment follow-up and control organisation",
+        about_right_note: "In short, we stand by you as a professional solution partner throughout your whole treatment journey.",
+
+        services_kicker: "Treatments",
+        services_title: "Medical fields we coordinate",
+        services_subtitle: "From aesthetic procedures to complex surgeries, we offer treatment options in Turkey’s leading hospitals.",
+        svc1: "Hair transplant",
+        svc2: "Plastic &amp; aesthetic surgery",
+        svc3: "Mesotherapy &amp; medical aesthetics",
+        svc4: "Dentistry &amp; implants",
+        svc5: "Internal medicine &amp; check-up programmes",
+        svc6: "Cardiology &amp; angiography",
+        svc7: "Oncology &amp; cancer treatments",
+        svc8: "Orthopaedics &amp; joint replacement",
+        svc9: "Eye diseases and surgery",
+        svc10: "Infertility &amp; IVF",
+        svc11: "Neurology &amp; interventional neuroradiology",
+        svc12: "Organ transplantation",
+        svc13: "Elderly care services",
+        svc14: "Addiction treatments",
+        svc15: "Physical therapy &amp; rehabilitation",
+        svc16: "Allergy &amp; immunology",
+        svc17: "Check-up &amp; imaging",
+        svc18: "Gastroenterology &amp; obesity surgery",
+        services_right_title: "Our focus: quality and safety",
+        services_right_p1: "We evaluate each patient individually according to their medical history and select the most appropriate hospital and specialist, following the whole process.",
+        services_right_li1: "Evidence-based treatment options based on medical reports",
+        services_right_li2: "Clear and transparent pricing before you travel",
+        services_right_li3: "Comfortable accommodation and transfer solutions",
+        services_right_li4: "Continuous communication before and after treatment",
+        services_right_p2: "Share your medical reports with us to receive a personalised treatment and travel plan.",
+
+        process_kicker: "How it works",
+        process_title: "Your journey with PNN Health",
+        process_subtitle: "From the first message to your return home, we make international treatment simple, safe and well organised for you.",
+        step1_title: "Contact &amp; medical information",
+        step1_p: "You share your complaints and existing medical reports with us via e-mail or WhatsApp.",
+        step2_title: "Expert review",
+        step2_p: "Our doctors review your file and prepare a suitable treatment plan, hospital suggestion and cost estimate.",
+        step3_title: "Travel &amp; appointment planning",
+        step3_p: "Appointments, accommodation and transfers are organised in line with your flight dates.",
+        step4_title: "Treatment &amp; follow-up",
+        step4_p: "Our team accompanies you during your stay in Turkey and remains in contact for follow-up after you return home.",
+
+        cert_kicker: "Certificates",
+        cert_title: "Officially authorised health tourism agency",
+        cert_subtitle: "PNN Health Travel Agency holds the International Health Tourism Authorization Certificate from the Ministry of Health and an A-Group travel agency licence from the Ministry of Culture and Tourism.",
+        cert1: "International Health Tourism Authorization – Ministry of Health",
+        cert2: "A-Group travel agency licence – Ministry of Culture and Tourism",
+        cert3: "Cooperation with accredited hospitals and clinics",
+
+        contact_kicker: "Contact",
+        contact_title: "Get your free medical evaluation",
+        contact_subtitle: "Share your health needs with us. Our team will get back to you as soon as possible with a personalised treatment and travel proposal.",
+        contact_left_title: "Reach PNN Health",
+        contact_phone_label: "Phone / WhatsApp",
+        contact_address_label: "Address",
+        contact_address_value: "Ehlibeyt Mah. Tekstilkiler Cad., Libra Kule 21 No: 21/29<br>Balgat, Çankaya · Ankara · Turkey",
+        contact_web_label: "Web",
+        contact_note: "You can send your medical reports by e-mail or WhatsApp. Our team will review them and propose the most appropriate treatment options for you.",
+
+        form_title: "Quick contact form",
+        form_name_label: "Full name",
+        form_name_ph: "Your name",
+        form_email_label: "E-mail",
+        form_email_ph: "you@example.com",
+        form_phone_label: "Phone / WhatsApp",
+        form_phone_ph: "+90 ...",
+        form_treatment_label: "Interested treatment",
+        form_opt1: "Hair transplant",
+        form_opt2: "Plastic / aesthetic surgery",
+        form_opt3: "Dentistry",
+        form_opt4: "Check-up",
+        form_opt5: "Oncology / cancer treatment",
+        form_opt6: "Cardiology",
+        form_opt7: "Organ transplantation",
+        form_opt8: "Infertility / IVF",
+        form_opt9: "Other",
+        form_message_label: "Your message / medical history",
+        form_message_ph: "Short description of your complaints, diagnoses and expectations.",
+        form_btn: "Send request (demo)",
+        form_small: "This form is for demonstration. Your developer can connect it to your preferred e-mail address or CRM system.",
+
+        footer_slogan: "Solution is PNN HEALTH. PNN HEALTH is with you.",
+        footer_rights: "All rights reserved."
+      }
+    };
+
+    function applyTranslations(lang) {
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.documentElement.lang = lang;
+      document.documentElement.dataset.lang = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key]) el.innerHTML = dict[key];
+      });
+
+      document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+        const key = el.getAttribute("data-i18n-placeholder");
+        if (dict[key]) el.setAttribute("placeholder", dict[key].replace(/<br>/g, " "));
+      });
+
+      document.querySelectorAll("[data-lang-btn]").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-lang-btn") === lang);
+      });
+
+      localStorage.setItem("pnn_lang", lang);
+    }
+
+    document.querySelectorAll("[data-lang-btn]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.getAttribute("data-lang-btn");
+        applyTranslations(lang);
+      });
+    });
+
+    const savedLang = localStorage.getItem("pnn_lang") || "tr";
+    applyTranslations(savedLang);
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
