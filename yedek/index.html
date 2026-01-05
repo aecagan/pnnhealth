@@ -787,42 +787,32 @@
       </div>
     </section>
 
-    
-
-    
-    
     <!-- CERTIFICATES -->
     <section id="certificates">
       <div class="section-header">
-        <div class="section-kicker">Yetki Belgeleri</div>
-        <h2 class="section-title">Yetkili ve akredite sağlık turizmi acentesi</h2>
+        <div class="section-kicker" data-i18n="cert_kicker">Yetki Belgeleri</div>
+        <h2 class="section-title" data-i18n="cert_title">Resmi olarak yetkilendirilmiş sağlık turizmi acentesi</h2>
+        <p class="section-subtitle" data-i18n="cert_subtitle">
+          PNN Health Travel Agency, T.C. Sağlık Bakanlığı tarafından verilen Uluslararası Sağlık Turizmi Yetki Belgesi’ne
+          ve T.C. Kültür ve Turizm Bakanlığı’ndan A grubu seyahat acentesi belgesine sahiptir.
+        </p>
       </div>
 
-      <div class="certificate-strip" style="flex-direction:column;align-items:flex-start;gap:16px;max-width:720px;margin:0 auto;">
-
-        <!-- Certificate image pill -->
-        <div class="certificate-pill" style="width:100%;justify-content:center;">
-          <img 
-            src="images/certificate-health-tourism.jpg" 
-            alt="T.C. Sağlık Bakanlığı Uluslararası Sağlık Turizmi Yetki Belgesi"
-            style="max-width:100%;border-radius:8px;"
-          />
+      <div class="certificate-strip">
+        <div class="certificate-pill">
+          <span>🏅</span>
+          <span data-i18n="cert1">T.C. Sağlık Bakanlığı Uluslararası Sağlık Turizmi Yetki Belgesi</span>
         </div>
-
-        <!-- Hospitals pill -->
-        <div class="certificate-pill" style="width:100%;flex-direction:column;align-items:flex-start;gap:8px;">
-          <strong>Akredite hastaneler ve kliniklerle iş birliklerimiz</strong>
-          <ul style="margin-left:18px;">
-            <li>Medicana International Ankara Hastanesi</li>
-            <li>Memorial Ankara Hastanesi</li>
-            <li>LÖSEV – LÖSANTE Çocuk ve Yetişkin Hastanesi</li>
-          </ul>
+        <div class="certificate-pill">
+          <span>🏨</span>
+          <span data-i18n="cert2">T.C. Kültür ve Turizm Bakanlığı A Grubu Seyahat Acentesi</span>
         </div>
-
+        <div class="certificate-pill">
+          <span>🩻</span>
+          <span data-i18n="cert3">Akredite hastaneler ve kliniklerle iş birliği</span>
+        </div>
       </div>
     </section>
-
-
 
     <!-- CONTACT -->
     <section id="contact">
@@ -841,15 +831,6 @@
             PNN Health’e ulaşın
           </h3>
           <ul class="contact-list">
-
-<li class="contact-item">
-  <div class="contact-icon">👤</div>
-  <div>
-    <div class="contact-label" data-i18n="contact_authorized_label">Yetkili Kişi</div>
-    <div class="contact-value">Zeynep ÇAĞAN</div>
-  </div>
-</li>
-
             <li class="contact-item">
               <div class="contact-icon">📞</div>
               <div>
@@ -1073,8 +1054,6 @@
         contact_address_label: "Adres",
         contact_address_value: "Ehlibeyt Mah. Tekstilkiler Cad., Libra Kule 21 No: 21/29<br>Balgat, Çankaya · Ankara · Türkiye",
         contact_web_label: "Web",
-        contact_authorized_label: "Authorized Contact",
-        contact_authorized_label: "Yetkili Kişi",
         contact_note: "Tıbbi raporlarınızı e-posta veya WhatsApp üzerinden iletebilirsiniz. Ekibimiz inceleyerek size en uygun tedavi seçenekleriyle dönüş yapacaktır.",
 
         form_title: "Hızlı iletişim formu",
@@ -1211,7 +1190,6 @@
         contact_address_label: "Address",
         contact_address_value: "Ehlibeyt Mah. Tekstilkiler Cad., Libra Kule 21 No: 21/29<br>Balgat, Çankaya · Ankara · Turkey",
         contact_web_label: "Web",
-        contact_authorized_label: "Yetkili Kişi",
         contact_note: "You can send your medical reports by e-mail or WhatsApp. Our team will review them and propose the most appropriate treatment options for you.",
 
         form_title: "Quick contact form",

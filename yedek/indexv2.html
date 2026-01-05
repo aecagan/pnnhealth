@@ -429,6 +429,92 @@
     }
     .certificate-pill span { font-size: 16px; }
 
+    .cert-image-wrap{
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .cert-thumb{
+      border: 1px solid rgba(11, 107, 117, 0.14);
+      background: #fff;
+      border-radius: 16px;
+      padding: 10px;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+      max-width: 520px;
+      width: 100%;
+    }
+    .cert-thumb img{
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+    }
+    .cert-caption{
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .cert-modal{
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 1000;
+    }
+    .cert-modal.is-open{ display: block; }
+    .cert-modal-backdrop{
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(2px);
+    }
+    .cert-modal-dialog{
+      position: relative;
+      margin: 6vh auto;
+      max-width: min(980px, 92vw);
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 22px 60px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+    .cert-modal-header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      background: rgba(245, 249, 252, 0.9);
+    }
+    .cert-modal-title{
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+    .cert-modal-close{
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      padding: 6px 8px;
+      color: var(--primary-dark);
+      border-radius: 10px;
+    }
+    .cert-modal-close:hover{
+      background: rgba(11, 107, 117, 0.08);
+    }
+    .cert-modal-image{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+
     .contact-grid {
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
@@ -549,7 +635,7 @@
           <button class="lang-btn" data-lang-btn="en">EN</button>
         </div>
         <a href="#contact">
-          <button class="nav-cta" data-i18n="nav_cta">Ücretsiz danışma</button>
+          <button class="nav-cta" data-i18n="nav_cta">Danışma</button>
         </a>
       </div>
     </div>
@@ -787,48 +873,58 @@
       </div>
     </section>
 
-    
-
-    
-    
     <!-- CERTIFICATES -->
     <section id="certificates">
       <div class="section-header">
-        <div class="section-kicker">Yetki Belgeleri</div>
-        <h2 class="section-title">Yetkili ve akredite sağlık turizmi acentesi</h2>
+        <div class="section-kicker" data-i18n="cert_kicker">Yetki Belgeleri</div>
+        <h2 class="section-title" data-i18n="cert_title">Resmi olarak yetkilendirilmiş sağlık turizmi acentesi</h2>
+        <p class="section-subtitle" data-i18n="cert_subtitle">
+          PNN Health Travel Agency, T.C. Sağlık Bakanlığı tarafından verilen Uluslararası Sağlık Turizmi Yetki Belgesi’ne
+          ve T.C. Kültür ve Turizm Bakanlığı’ndan A grubu seyahat acentesi belgesine sahiptir.
+        </p>
       </div>
 
-      <div class="certificate-strip" style="flex-direction:column;align-items:flex-start;gap:16px;max-width:720px;margin:0 auto;">
-
-        <!-- Certificate image pill -->
-        <div class="certificate-pill" style="width:100%;justify-content:center;">
-          <img 
-            src="images/certificate-health-tourism.jpg" 
-            alt="T.C. Sağlık Bakanlığı Uluslararası Sağlık Turizmi Yetki Belgesi"
-            style="max-width:100%;border-radius:8px;"
-          />
+      <div class="certificate-strip">
+        <div class="certificate-pill">
+          <span>🏅</span>
+          <span data-i18n="cert1">T.C. Sağlık Bakanlığı Uluslararası Sağlık Turizmi Yetki Belgesi</span>
         </div>
+    
 
-        <!-- Hospitals pill -->
-        <div class="certificate-pill" style="width:100%;flex-direction:column;align-items:flex-start;gap:8px;">
-          <strong>Akredite hastaneler ve kliniklerle iş birliklerimiz</strong>
-          <ul style="margin-left:18px;">
-            <li>Medicana International Ankara Hastanesi</li>
-            <li>Memorial Ankara Hastanesi</li>
-            <li>LÖSEV – LÖSANTE Çocuk ve Yetişkin Hastanesi</li>
-          </ul>
+      <div class="cert-image-wrap">
+        <button class="cert-thumb" type="button" id="certThumb" aria-label="" data-i18n-aria-label="cert_image_open">
+          <img src="images/health-tourism-authorization.jpg" alt="" data-i18n-alt="cert_image_alt">
+        </button>
+        <div class="cert-caption" data-i18n="cert_image_caption">Uluslararası Sağlık Turizmi Yetki Belgesi (tıklayın)</div>
+      </div>
+
+      <!-- Certificate lightbox modal -->
+      <div class="cert-modal" id="certModal" aria-hidden="true">
+        <div class="cert-modal-backdrop" data-close="true"></div>
+        <div class="cert-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
+          <div class="cert-modal-header">
+            <div class="cert-modal-title" id="certModalTitle" data-i18n="cert_modal_title">Yetki Belgesi</div>
+            <button class="cert-modal-close" type="button" id="certModalClose" data-close="true" aria-label="Close">✕</button>
+          </div>
+          <img class="cert-modal-image" src="images/health-tourism-authorization.jpg" alt="" data-i18n-alt="cert_image_alt">
         </div>
-
+      </div>
+    <div class="certificate-pill">
+          <span>🏨</span>
+          <span data-i18n="cert2">T.C. Kültür ve Turizm Bakanlığı A Grubu Seyahat Acentesi</span>
+        </div>
+        <div class="certificate-pill">
+          <span>🩻</span>
+          <span data-i18n="cert3">Akredite hastaneler ve kliniklerle iş birliği</span>
+        </div>
       </div>
     </section>
-
-
 
     <!-- CONTACT -->
     <section id="contact">
       <div class="section-header">
         <div class="section-kicker" data-i18n="contact_kicker">İletişim</div>
-        <h2 class="section-title" data-i18n="contact_title">Ücretsiz tıbbi değerlendirme alın</h2>
+        <h2 class="section-title" data-i18n="contact_title">Tıbbi değerlendirme alın</h2>
         <p class="section-subtitle" data-i18n="contact_subtitle">
           Sağlık ihtiyaçlarınızı bizimle paylaşın. Ekibimiz, size en kısa sürede kişiselleştirilmiş tedavi ve seyahat
           planı ile geri dönüş yapsın.
@@ -841,15 +937,6 @@
             PNN Health’e ulaşın
           </h3>
           <ul class="contact-list">
-
-<li class="contact-item">
-  <div class="contact-icon">👤</div>
-  <div>
-    <div class="contact-label" data-i18n="contact_authorized_label">Yetkili Kişi</div>
-    <div class="contact-value">Zeynep ÇAĞAN</div>
-  </div>
-</li>
-
             <li class="contact-item">
               <div class="contact-icon">📞</div>
               <div>
@@ -971,7 +1058,7 @@
         nav_services: "Tedaviler",
         nav_process: "Süreç",
         nav_contact: "İletişim",
-        nav_cta: "Ücretsiz danışma",
+        nav_cta: "Danışma",
 
         hero_badge: "Uluslararası Sağlık Turizmi Yetki Belgesi",
         hero_title: "Türkiye’de güvenilir <span>sağlık turizmi</span> çözüm ortağınız",
@@ -1009,7 +1096,7 @@
         about_meta4_label: "Yetki",
         about_meta4_value: "Uluslararası Sağlık Turizmi Yetki Belgesi",
         about_right_title: "Sizin için neleri organize ediyoruz?",
-        about_li1: "Tıbbi raporlarınızla ücretsiz ön değerlendirme",
+        about_li1: "Tıbbi raporlarınızla ön değerlendirme",
         about_li2: "Size özel tedavi planı ve maliyet çalışması",
         about_li3: "Uygun hastane ve uzman hekim seçimi",
         about_li4: "Havalimanı–otel–hastane transferleri ve konaklama",
@@ -1064,17 +1151,20 @@
         cert1: "T.C. Sağlık Bakanlığı Uluslararası Sağlık Turizmi Yetki Belgesi",
         cert2: "T.C. Kültür ve Turizm Bakanlığı A Grubu Seyahat Acentesi",
         cert3: "Akredite hastaneler ve kliniklerle iş birliği",
+        cert_image_alt: "Uluslararası Sağlık Turizmi Yetki Belgesi",
+        cert_image_caption: "Uluslararası Sağlık Turizmi Yetki Belgesi (tıklayın)",
+        cert_modal_title: "Yetki Belgesi",
+        cert_image_open: "Yetki belgesini büyüt",
+
 
         contact_kicker: "İletişim",
-        contact_title: "Ücretsiz tıbbi değerlendirme alın",
+        contact_title: "Tıbbi değerlendirme alın",
         contact_subtitle: "Sağlık ihtiyaçlarınızı bizimle paylaşın. Ekibimiz, size en kısa sürede kişiselleştirilmiş tedavi ve seyahat planı ile geri dönüş yapsın.",
         contact_left_title: "PNN Health’e ulaşın",
         contact_phone_label: "Telefon / WhatsApp",
         contact_address_label: "Adres",
         contact_address_value: "Ehlibeyt Mah. Tekstilkiler Cad., Libra Kule 21 No: 21/29<br>Balgat, Çankaya · Ankara · Türkiye",
         contact_web_label: "Web",
-        contact_authorized_label: "Authorized Contact",
-        contact_authorized_label: "Yetkili Kişi",
         contact_note: "Tıbbi raporlarınızı e-posta veya WhatsApp üzerinden iletebilirsiniz. Ekibimiz inceleyerek size en uygun tedavi seçenekleriyle dönüş yapacaktır.",
 
         form_title: "Hızlı iletişim formu",
@@ -1109,7 +1199,7 @@
         nav_services: "Treatments",
         nav_process: "How it works",
         nav_contact: "Contact",
-        nav_cta: "Free consultation",
+        nav_cta: "Consultation",
 
         hero_badge: "International Health Tourism Authorization",
         hero_title: "Your trusted partner for <span>health travel</span> in Turkey",
@@ -1147,7 +1237,7 @@
         about_meta4_label: "Authorization",
         about_meta4_value: "International Health Tourism Certificate",
         about_right_title: "What do we organise for you?",
-        about_li1: "Free preliminary evaluation with your medical reports",
+        about_li1: "Preliminary evaluation with your medical reports",
         about_li2: "Personalised treatment plan and cost calculation",
         about_li3: "Selection of the most suitable hospital and specialist",
         about_li4: "Airport–hotel–hospital transfers and accommodation",
@@ -1202,16 +1292,20 @@
         cert1: "International Health Tourism Authorization – Ministry of Health",
         cert2: "A-Group travel agency licence – Ministry of Culture and Tourism",
         cert3: "Cooperation with accredited hospitals and clinics",
+        cert_image_alt: "International Health Tourism Authorization Certificate",
+        cert_image_caption: "International Health Tourism Authorization Certificate (click to enlarge)",
+        cert_modal_title: "Authorization Certificate",
+        cert_image_open: "Enlarge the certificate",
+
 
         contact_kicker: "Contact",
-        contact_title: "Get your free medical evaluation",
+        contact_title: "Get your medical evaluation",
         contact_subtitle: "Share your health needs with us. Our team will get back to you as soon as possible with a personalised treatment and travel proposal.",
         contact_left_title: "Reach PNN Health",
         contact_phone_label: "Phone / WhatsApp",
         contact_address_label: "Address",
         contact_address_value: "Ehlibeyt Mah. Tekstilkiler Cad., Libra Kule 21 No: 21/29<br>Balgat, Çankaya · Ankara · Turkey",
         contact_web_label: "Web",
-        contact_authorized_label: "Yetkili Kişi",
         contact_note: "You can send your medical reports by e-mail or WhatsApp. Our team will review them and propose the most appropriate treatment options for you.",
 
         form_title: "Quick contact form",
@@ -1258,6 +1352,17 @@
         if (dict[key]) el.setAttribute("placeholder", dict[key].replace(/<br>/g, " "));
       });
 
+
+      // Attribute translations (e.g., alt, aria-label)
+      document.querySelectorAll("[data-i18n-alt]").forEach(el => {
+        const key = el.getAttribute("data-i18n-alt");
+        if (dict[key]) el.setAttribute("alt", dict[key].replace(/<br>/g, " "));
+      });
+      document.querySelectorAll("[data-i18n-aria-label]").forEach(el => {
+        const key = el.getAttribute("data-i18n-aria-label");
+        if (dict[key]) el.setAttribute("aria-label", dict[key].replace(/<br>/g, " "));
+      });
+
       document.querySelectorAll("[data-lang-btn]").forEach(btn => {
         btn.classList.toggle("active", btn.getAttribute("data-lang-btn") === lang);
       });
@@ -1276,6 +1381,41 @@
     applyTranslations(savedLang);
 
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Certificate modal (lightbox)
+    (function () {
+      const thumb = document.getElementById("certThumb");
+      const modal = document.getElementById("certModal");
+      if (!thumb || !modal) return;
+
+      function openModal() {
+        modal.classList.add("is-open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      thumb.addEventListener("click", openModal);
+
+      modal.addEventListener("click", (e) => {
+        const target = e.target;
+        if (target && target.getAttribute && target.getAttribute("data-close") === "true") {
+          closeModal();
+        }
+      });
+
+      document.getElementById("certModalClose")?.addEventListener("click", closeModal);
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+      });
+    })();
+
   </script>
 </body>
 </html>
